@@ -1,7 +1,66 @@
 @import "partials/normalize";
 
+/*  BASE STYLES */
+
 body {
   background-color: black;
+}
+
+h1,
+h2,
+li {
+  cursor: default;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  margin-bottom: 10px;
+}
+
+/*  COMMON STYLES */
+
+.wrapper {
+  margin:0 auto;
+  max-width: 1200px;
+}
+
+/*  HEADER STYLES */
+
+header {
+  background-color: #fff;
+  color: black;
+  height: 50px;
+  border-radius: 0 0 10px 10px;
+}
+
+/*  PLAYING FIELD */
+
+.messageField {
+  width:100%;
+  height:800px;
+  background-color:grey
+}
+
+/*  MSG BOX */
+
+.msgWindow {
+  width: 800px;
+  height: 572px;
+  margin: 0 auto;
+  background-color: grey;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .structureSelect {
@@ -27,26 +86,6 @@ body {
   }
 }
 
-h1,
-h2,
-li {
-  cursor: default;
-  margin: 0;
-}
-
-h1 {
-  text-align: center;
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-form {
-  margin-bottom: 10px;
-}
-
 .wordCategory {
   width: 100%;
   position: relative;
@@ -60,6 +99,27 @@ form {
     width: calc(80% - 6px);
     margin: 3px 10%;
     font-size: 1rem;
+  }
+}
+
+.wordCats ul {
+  text-align: center;
+  line-height: 20px;
+  top: 0;
+  position: relative;
+  left: 0;
+  list-style: none;
+  margin: 0 calc(10% - 3px);
+  width: 80%;
+  padding-left: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-left: 2px dotted black;
+  border-right: 2px dotted black;
+  & li:nth-child(odd)::before {
+    background-color: #bbb;
   }
 }
 
@@ -91,40 +151,11 @@ form {
   }
 }
 
-ul {
-  text-align: center;
-  line-height: 20px;
-  top: 0;
-  position: relative;
-  left: 0;
-  list-style: none;
-  margin: 0 calc(10% - 3px);
-  width: 80%;
-  padding-left: 0;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-left: 2px dotted black;
-  border-right: 2px dotted black;
-  & li:nth-child(odd)::before {
-    background-color: #bbb;
-  }
-}
-
-.defOption {
-  display:none;
-}
-
-.resultTest {
+.previewText {
   position: absolute;
   right: 100px;
   text-align: right;
   top: 50px;
-}
-
-.hiddenList {
-  display:none;
 }
 
 .wordCats {
@@ -139,92 +170,88 @@ ul {
   overflow-y: scroll;
 }
 
-.hide {
+// CHECKBOX
+
+// .sentenceCheckbox label {
+//   position: relative;
+//   line-height: 45px;
+//   margin: 4px 0px 0px 15px;
+//   user-select: none;
+// }
+
+// .sentenceNum {
+//   position: absolute;
+//   width: 0;
+//   height: 0;
+//   top: -9999px;
+//   opacity: 0;
+// }
+
+// .sentenceCheckbox {
+//   position: relative;
+//   display: flex;
+//   justify-content: center;
+//   width: 200px;
+//   margin: 0 auto;
+// }
+
+// .checkBox1 {
+//   right: calc(100px / 3);
+//   &::before {
+//     content: "";
+//     background-color: darkgray;
+//     border-radius: 50px;
+//     position: absolute;
+//     width: 85px;
+//     height: 40px;
+//     right: -75px;
+//     top: 0;
+//     display: block;
+//     transition: background-color 0.2s, right 0.2s;
+//   }
+//   &::after {
+//     content: "";
+//     border-radius: 50px;
+//     background-color: #fff;
+//     display: block;
+//     top: -40px;
+//     right: -25px;
+//     width: 30px;
+//     height: 30px;
+//     position: relative;
+//     transition: right 0.25s;
+//     overflow: visible;
+//   }
+// }
+
+// .checkBox2 {
+//   right: -35px;
+// }
+
+// .sentenceNum:checked + .checkBox1::before {
+//   background-color: slateblue;
+// }
+
+// .sentenceNum:active + .checkBox1::before {
+//   background-color: cornflowerblue;
+// }
+
+// .sentenceNum:checked + .checkBox1::after {
+//   right: -70px;
+// }
+
+/*  FOOTER  */
+
+/*  OVERRIDES */
+
+.visuallyHidden {
+  position:absolute;
+  width: 1px;
+  height:1px;
+  opacity:0;
+  z-index:-9999;
+}
+
+.hiddenList, .defOption {
   display: none;
-}
-
-.msgWindow {
-  width: 800px;
-  height: 572px;
-  margin: 0 auto;
-  background-color: grey;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.sentenceNum {
-  position: absolute;
-  width: 0;
-  height: 0;
-  top: -9999px;
-  opacity: 0;
-}
-
-.sentenceCheckbox {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  width: 200px;
-  margin: 0 auto;
-}
-
-label {
-  position: relative;
-  line-height: 45px;
-  margin: 4px 0px 0px 15px;
-  user-select: none;
-}
-
-.checkBox1 {
-  right: calc(100px / 3);
-  &::before {
-    content: "";
-    background-color: darkgray;
-    border-radius: 50px;
-    position: absolute;
-    width: 85px;
-    height: 40px;
-    right: -75px;
-    top: 0;
-    display: block;
-    transition: background-color 0.2s, right 0.2s;
-  }
-  &::after {
-    content: "";
-    border-radius: 50px;
-    background-color: #fff;
-    display: block;
-    top: -40px;
-    right: -25px;
-    width: 30px;
-    height: 30px;
-    position: relative;
-    transition: right 0.25s;
-    overflow: visible;
-  }
-}
-
-.checkBox2 {
-  right: -35px;
-}
-
-.sentenceNum:checked + .checkBox1::before {
-  background-color: slateblue;
-}
-
-.sentenceNum:active + .checkBox1::before {
-  background-color: cornflowerblue;
-}
-
-.sentenceNum:checked + .checkBox1::after {
-  right: -70px;
-}
-
-header {
-  background-color: #fff;
-  color: black;
-  height: 50px;
-  border-radius: 0 0 10px 10px;
 }

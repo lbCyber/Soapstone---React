@@ -20,15 +20,17 @@ class MessageWindow extends Component {
       word = this.state.word
     }
     let newState = { structure: chosenStructure, word: word }
-    this.setState(newState)
+    this.setState({structure: newState.structure, word: newState.word})
   }
 
   callBackWord = (chosenWord) => {
+    console.log(chosenWord)
+    let chosenStructure = this.state.structure
     let newState = {
       word: chosenWord,
-      completeSentence: this.state.structure.replace("****", this.state.word)
+      completeSentence: chosenStructure.replace("****", chosenWord)
     }
-    this.setState(newState)
+    this.setState({word: newState.word, completeSentence: newState.completeSentence})
   }
 
 
@@ -37,12 +39,13 @@ class MessageWindow extends Component {
     const dbRef = firebase.database().ref('pages/page1/messages');
     const complete = this.state.completeSentence
     console.log(complete)
-    const messageToPush = ( {
+    const messageToPush = ({
       message: complete,
       posX: this.props.posX,
       posY: this.props.posY
     })
     dbRef.push(messageToPush);
+    this.props.createMsg();
   }
 
   render() {
@@ -51,7 +54,7 @@ class MessageWindow extends Component {
         <h2>Select your message</h2>
         <form action="">
           <SentenceDropdown sendBack={this.callBackStructure} />
-          <div className="result"></div>
+          <div className="previewText"></div>
         </form>
         <h3 className="messagePreview">{this.state.completeSentence}</h3>
         <WordCats sendBack={this.callBackWord} />

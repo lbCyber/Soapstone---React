@@ -62,9 +62,7 @@ class WordCats extends Component {
           text: data[key],
         });
       }
-      this.setState({
-        categories: newState,
-      })
+      this.setState({categories: newState})
     })
   }
 }

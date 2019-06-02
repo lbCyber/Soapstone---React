@@ -15,7 +15,7 @@ class SentenceDropdown extends Component {
     const localState = Object.assign({}, this.state)
     const select = document.getElementById("structureSelect")
     localState.currentStructure = select.value
-    this.setState(localState)
+    this.setState({localState})
     this.props.sendBack(localState.currentStructure)
   }
 
@@ -49,9 +49,7 @@ class SentenceDropdown extends Component {
           text: data[key],
         });
       }
-      this.setState({
-        sentences: newState,
-      })
+      this.setState({sentences: newState})
     })
   }
 }

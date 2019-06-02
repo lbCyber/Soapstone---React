@@ -17,7 +17,7 @@ class WordsHandler extends Component {
       } else {
         localState.currWords = []
       }
-      this.setState(localState)
+      this.setState({currWords: localState.currWords})
       return true
     } else {
       return false
