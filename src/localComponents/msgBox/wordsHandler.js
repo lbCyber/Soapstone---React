@@ -11,7 +11,7 @@ class WordsHandler extends Component {
   }
   words = (props) => {
     if (props.wordId === props.cats) {
-      const localState = Object.assign({}, this.state)
+      const localState = {}
       if (props.wordId === props.cats) {
         localState.currWords = props.wordText;
       } else {
@@ -29,7 +29,12 @@ class WordsHandler extends Component {
       <React.Fragment>
         {this.props.wordText.map((word) => {
           return (
-            <li key={word} className="word" onClick={() => this.props.sendBack({word})}>{word}</li>
+            <li key={word} className="word" onClick={() => {
+              this.props.sendBack({ word })
+            }
+            }>
+              {word}
+            </li>
           )
         })}
       </React.Fragment>

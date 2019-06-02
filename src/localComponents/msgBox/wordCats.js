@@ -8,25 +8,20 @@ class WordCats extends Component {
     this.state = {
       categories: [],
       wordList: [],
-      activeCat: "null",
-      activeList: ""
+      activeCat: "null"
     }
   }
-  handleClick = (id, obj) => {
-    const localState = Object.assign({}, this.state)
-    localState.wordList = obj;
-    if ((id !== localState.activeCat) || (localState.activeCat === "null")) {
-      localState.activeCat = id
-    } else {
-      localState.activeCat = "null"
-    }
-    this.setState(localState)
-  }
+  // handleClick = (id, obj) => {
+  //   const localState = {
+  //     wordList: obj,
+  //     activeCat: id
+  //     }
+  //   this.setState(localState)
+  // }
 
   callBack = (chosenWord) => {
-    this.props.sendBack(chosenWord.word)
-    console.log(chosenWord, "CHOSEN WORD")
-    console.log(this.props)
+    let currWord = chosenWord.word
+    this.props.sendBack(currWord)
   }
 
   render() {
@@ -35,10 +30,16 @@ class WordCats extends Component {
         {this.state.categories.map((cats) => {
           return (
             <div className="wordCategory" key={cats.id}>
-              <h2 onClick={() => this.handleClick(cats.id, cats.text)}
-              >{cats.id}</h2>
+              {/* <h2 onClick={() => this.handleClick(cats.id, cats.text)}
+              >{cats.id}</h2> */}
+              <h2>{cats.id}</h2>
               <ul className={cats.id} id={cats.id}>
-                <WordsHandler wordId={cats.id} wordText={cats.text} cats={this.state.activeCat} sendBack={this.callBack}/>
+                <WordsHandler 
+                wordId={cats.id}
+                wordText={cats.text}
+                cats={this.state.activeCat}
+                sendBack={this.callBack}
+                />
               </ul>
             </div>
           )

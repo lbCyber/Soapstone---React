@@ -1,26 +1,48 @@
 import React, { Component } from 'react';
 import SentenceDropdown from './sentenceDropdown';
 import WordCats from './wordCats';
-import SubmitWord from './submitWord'
+import firebase from "../../globalComponents/firebase"
 
 
 class MessageWindow extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       word: '****',
-      structure: ''
+      structure: '',
+      completeSentence: ''
     }
   }
 
-  callBackWord = (chosenWord) => {
-    let newState = {word: chosenWord}
+  callBackStructure = (chosenStructure) => {
+    let word = '****'
+    if (this.state.word !== "****") {
+      word = this.state.word
+    }
+    let newState = { structure: chosenStructure, word: word }
     this.setState(newState)
   }
 
-  callBackStructure = (chosenStructure) => {
-    let newState = { structure: chosenStructure }
+  callBackWord = (chosenWord) => {
+    let newState = {
+      word: chosenWord,
+      completeSentence: this.state.structure.replace("****", this.state.word)
+    }
     this.setState(newState)
+  }
+
+
+  messageSubmit = (e) => {
+    e.preventDefault();
+    const dbRef = firebase.database().ref('pages/page1/messages');
+    const complete = this.state.completeSentence
+    console.log(complete)
+    const messageToPush = ( {
+      message: complete,
+      posX: this.props.posX,
+      posY: this.props.posY
+    })
+    dbRef.push(messageToPush);
   }
 
   render() {
@@ -31,9 +53,9 @@ class MessageWindow extends Component {
           <SentenceDropdown sendBack={this.callBackStructure} />
           <div className="result"></div>
         </form>
-        <h3 className="messagePreview">{this.state.structure.replace("****", this.state.word)}</h3>
+        <h3 className="messagePreview">{this.state.completeSentence}</h3>
         <WordCats sendBack={this.callBackWord} />
-        <SubmitWord />
+        <button className="submitButton" onClick={this.messageSubmit}>Submit!</button>
       </div>
     )
   }
