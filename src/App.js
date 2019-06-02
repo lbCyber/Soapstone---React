@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
 import './styles/styles.css';
-import MessageWindow from './localComponents/msgBox/messageWindow'
+import MessageField from './localComponents/messageField'
 
 class App extends Component {
-  state = {
-
+  constructor() {
+    super();
+    this.state = {
+      currentStructure: 'blep',
+      sentences: [],
+      categories: [],
+      wordList: [],
+      activeCat: null
+    }
   }
   render() {
     return (
       <div className="App">
-        <MessageWindow />
+        <MessageField />
       </div>
     )
   }

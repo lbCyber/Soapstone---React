@@ -3,19 +3,20 @@ import firebase from '../../globalComponents/firebase';
 import SentenceOptions from './sentenceOptions'
 
 class SentenceDropdown extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
+      sentences: [],
       currentStructure: 'blep',
-      sentences: []
     }
   }
 
   selectHandler = () => {
+    const localState = Object.assign({}, this.state)
     const select = document.getElementById("structureSelect")
-    const currentStructure = select.value.replace(/\s/g,"_")
-    this.props.structure(currentStructure)
-    console.log(`props is ${currentStructure}`)
+    localState.currentStructure = select.value
+    this.setState(localState)
+    this.props.sendBack(localState.currentStructure)
   }
 
   render() {

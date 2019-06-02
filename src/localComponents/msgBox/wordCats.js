@@ -1,14 +1,51 @@
 import React, { Component } from 'react';
 import firebase from '../../globalComponents/firebase';
-// import WordsHandler from './wordsHandler'
+import WordsHandler from './wordsHandler'
 
 class WordCats extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       categories: [],
-      activeCat: "null"
+      wordList: [],
+      activeCat: "null",
+      activeList: ""
     }
+  }
+  handleClick = (id, obj) => {
+    const localState = Object.assign({}, this.state)
+    localState.wordList = obj;
+    if ((id !== localState.activeCat) || (localState.activeCat === "null")) {
+      localState.activeCat = id
+    } else {
+      localState.activeCat = "null"
+    }
+    this.setState(localState)
+  }
+
+  callBack = (chosenWord) => {
+    this.props.sendBack(chosenWord.word)
+    console.log(chosenWord, "CHOSEN WORD")
+    console.log(this.props)
+  }
+
+  render() {
+    return (
+      <div className="wordCats">
+        {this.state.categories.map((cats) => {
+          return (
+            <div className="wordCategory" key={cats.id}>
+              <h2 onClick={() => this.handleClick(cats.id, cats.text)}
+              >{cats.id}</h2>
+              <ul className={cats.id} id={cats.id}>
+                <WordsHandler wordId={cats.id} wordText={cats.text} cats={this.state.activeCat} sendBack={this.callBack}/>
+              </ul>
+            </div>
+          )
+        })
+        }
+      </div>
+    )
   }
 
   componentDidMount() {
@@ -29,38 +66,6 @@ class WordCats extends Component {
       })
     })
   }
-
-  render() {
-    return (
-      <div className="wordCats">
-        {this.state.categories.map((cats) => {
-          return (
-            <div className="wordCategory" key={cats.id}>
-              <h2 onClick={() => this.handleClick(cats.id)}>
-                {cats.id}
-              </h2>
-              {/* <WordsHandler wordId={cats.id} wordText={cats} cats={this.state.activeCat} /> */}
-              {/* {console.log(this.state)} */}
-            </div>
-          )
-        })
-        }
-      </div>
-    )
-  }
-
-  handleClick = (id) => {
-    const localState = Object.assign({}, this.state)
-    if ((id !== localState.activeCat) || (localState.activeCat === "null")) {
-      localState.activeCat = id
-      console.log('yes')
-    } else {
-      localState.activeCat = "null"
-      console.log('no')
-    }
-    this.setState(localState)
-  }
 }
-
 
 export default WordCats;
