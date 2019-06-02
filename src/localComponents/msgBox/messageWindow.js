@@ -20,7 +20,7 @@ class MessageWindow extends Component {
       word = this.state.word
     }
     let newState = { structure: chosenStructure, word: word }
-    this.setState({structure: newState.structure, word: newState.word})
+    this.setState({ structure: newState.structure, word: newState.word })
   }
 
   callBackWord = (chosenWord) => {
@@ -30,7 +30,11 @@ class MessageWindow extends Component {
       word: chosenWord,
       completeSentence: chosenStructure.replace("****", chosenWord)
     }
-    this.setState({word: newState.word, completeSentence: newState.completeSentence})
+    this.setState({ word: newState.word, completeSentence: newState.completeSentence })
+  }
+
+  backOut = () => {
+    this.props.createMsg();
   }
 
 
@@ -54,11 +58,13 @@ class MessageWindow extends Component {
         <h2>Select your message</h2>
         <form action="">
           <SentenceDropdown sendBack={this.callBackStructure} />
-          <div className="previewText"></div>
+          <h3 className="previewText" tabindex="300">{this.state.completeSentence}</h3>
         </form>
-        <h3 className="messagePreview">{this.state.completeSentence}</h3>
         <WordCats sendBack={this.callBackWord} />
-        <button className="submitButton" onClick={this.messageSubmit}>Submit!</button>
+        <div className="messageWindowButtons">
+          <button className="submitButton buttonGo" onClick={this.messageSubmit} tabindex="301">Submit!</button>
+          <button className="submitButton buttonLeave" onClick={this.backOut} tabindex="302">Cancel!</button>
+        </div>
       </div>
     )
   }

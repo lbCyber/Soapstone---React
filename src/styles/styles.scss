@@ -1,5 +1,10 @@
 @import "partials/normalize";
 
+/*  VARIABLES */
+
+$handwriteFont: "Caveat Brush", cursive;
+$printFont: "Gentium Basic", serif;
+
 /*  BASE STYLES */
 
 body {
@@ -29,25 +34,104 @@ form {
 /*  COMMON STYLES */
 
 .wrapper {
-  margin:0 auto;
+  margin: 0 auto;
   max-width: 1200px;
+  font-family: "Gentium Basic", serif;
+  overflow: scroll;
+  max-height: calc(100vh - 150px);
 }
 
 /*  HEADER STYLES */
 
 header {
-  background-color: #fff;
-  color: black;
-  height: 50px;
+  background-image: linear-gradient(45deg, rgba(140, 40, 20, 0.2), rgba(220, 100, 100, 0.3)),
+    url("../assets/headerLeatherBack.jpg");
+  color: white;
+  height: 100px;
   border-radius: 0 0 10px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background-blend-mode: hard-light;
+  font-family: $printFont;
+  h1 {
+    background-image: url("../assets/logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 420px;
+    justify-content: center;
+    font-size: 3.6rem;
+    padding-left: 90px;
+    margin-left: 20px;
+  }
+}
+
+.pageButtons {
+  width: 80px;
+  height: 40px;
+  text-align: center;
+  margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: default;
 }
 
 /*  PLAYING FIELD */
 
 .messageField {
-  width:100%;
-  height:800px;
-  background-color:grey
+  width: 10000px;
+  height: 10000px;
+  background-color: grey;
+}
+
+.droppedSign {
+  position: absolute;
+  height: 60px;
+  width: 110px;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 100%;
+  animation: glow 5s alternate infinite 2s;
+  &::before {
+    animation: redglow 2s normal 1;
+    background-image: url("../assets/glyphs-small.png");
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 1;
+    transition: opacity 0.5s;
+    width: 110px;
+    height: 60px;
+    border-radius: 100%;
+    content: "";
+  }
+  &::after {
+    content: attr(data-label);
+    position: absolute;
+    opacity: 0;
+    color: white;
+    background-color: #777;
+    border-radius: 15px;
+    padding: 20px;
+    transition: opacity 0.5s;
+    font: $handwriteFont;
+  }
+  &:hover {
+    &::before {
+      opacity: 0;
+    }
+    &::after {
+      opacity: 1;
+    }
+  }
 }
 
 /*  MSG BOX */
@@ -61,6 +145,8 @@ header {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  position: relative;
+  z-index: 100;
 }
 
 .structureSelect {
@@ -75,6 +161,8 @@ header {
   background-color: transparent;
   border-bottom: 3px dotted rgba(0, 0, 0, 0.5);
   text-transform: uppercase;
+  font-family: $printFont;
+  font-size: 1.3rem;
   &:focus {
     background-image: linear-gradient(#000, grey);
     border-color: rgba(0, 0, 0, 0.7);
@@ -102,24 +190,35 @@ header {
   }
 }
 
-.wordCats ul {
-  text-align: center;
-  line-height: 20px;
-  top: 0;
+.wordCats {
   position: relative;
-  left: 0;
-  list-style: none;
-  margin: 0 calc(10% - 3px);
-  width: 80%;
-  padding-left: 0;
-  overflow: hidden;
+  background-color: darkgray;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-left: 2px dotted black;
-  border-right: 2px dotted black;
-  & li:nth-child(odd)::before {
-    background-color: #bbb;
+  text-align: center;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  ul {
+    text-align: center;
+    line-height: 20px;
+    top: 0;
+    position: relative;
+    left: 0;
+    list-style: none;
+    margin: 0 calc(10% - 3px);
+    width: 80%;
+    padding-left: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-left: 2px dotted black;
+    border-right: 2px dotted black;
+    & li:nth-child(odd)::before {
+      background-color: #bbb;
+    }
   }
 }
 
@@ -151,23 +250,54 @@ header {
   }
 }
 
+.messageWindowButtons {
+  display: flex;
+  height: 50px;
+  justify-content: space-between;
+}
+
+.submitButton {
+  background-color: #444;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: $printFont;
+  border-radius: 0 0 10px 10px;
+  border-color: transparent;
+  font-size: 1.6rem;
+  letter-spacing: 2px;
+  &:hover {
+    border: 2px solid orange;
+    background-color: #555;
+    color: #fda;
+    text-shadow: 0 0 35px #fff;
+  }
+  &:focus {
+    background-color: #888;
+    border-color: #222;
+  }
+}
+
+.buttonGo {
+  width: calc(60% - 5px);
+}
+.buttonLeave {
+  width: calc(40% - 5px);
+}
+
+.buttons {
+  margin-right: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 100%;
+}
+
 .previewText {
   position: absolute;
   right: 100px;
   text-align: right;
   top: 50px;
-}
-
-.wordCats {
-  position: relative;
-  background-color: darkgray;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  font: $printFont;
 }
 
 // CHECKBOX
@@ -242,16 +372,45 @@ header {
 
 /*  FOOTER  */
 
+/*  ANIMATIONS  */
+
+@keyframes redglow {
+  0% {
+    background-color: rgba(250, 50, 30, 0);
+    box-shadow: 0 0 0 0 rgba(250, 50, 30, 0);
+  }
+  50% {
+    background-color: rgba(250, 50, 30, 0.5);
+    box-shadow: 0 0 15px 15px rgba(250, 50, 30, 0.5);
+  }
+  100% {
+    background-color: rgba(240, 150, 30, 0);
+    box-shadow: 0 0 10px 10px rgba(240, 150, 30, 0);
+  }
+}
+
+@keyframes glow {
+  from {
+    background-color: rgba(240, 150, 30, 0);
+    box-shadow: 0 0 10px 10px rgba(240, 150, 30, 0);
+  }
+  to {
+    background-color: rgba(240, 150, 30, 0.4);
+    box-shadow: 0 0 25px 25px rgba(240, 150, 30, 0.4);
+  }
+}
+
 /*  OVERRIDES */
 
 .visuallyHidden {
-  position:absolute;
+  position: absolute;
   width: 1px;
-  height:1px;
-  opacity:0;
-  z-index:-9999;
+  height: 1px;
+  opacity: 0;
+  z-index: -9999;
 }
 
-.hiddenList, .defOption {
+.hiddenList,
+.defOption {
   display: none;
 }

@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
 import './styles/styles.css';
 import MessageField from './localComponents/messageField'
+import Header from './localComponents/header'
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      currentStructure: 'blep',
-      sentences: [],
-      categories: [],
-      wordList: [],
-      activeCat: null
+      activePage: 1
     }
+  }
+  callBackPage = (p) => {
+    let newState = {activePage: p}
+    this.setState(newState)
   }
   render() {
     return (
       <div className="App">
-        <MessageField />
+        <Header sendBackPage={this.callBackPage}/>
+        <MessageField page={this.state.activePage}/>
       </div>
     )
   }

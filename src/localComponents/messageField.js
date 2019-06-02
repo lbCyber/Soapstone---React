@@ -3,8 +3,8 @@ import MessageWindow from './msgBox/messageWindow'
 import MsgSign from './msgBox/msgSign'
 
 class MessageField extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       create: '',
       posX: 0,
@@ -16,7 +16,6 @@ class MessageField extends Component {
     if (!(this.state.create)) {
       let xCoord = e.clientX;
       let yCoord = e.clientY;
-      console.log(xCoord, yCoord)
       this.setState({
         create: true,
         posX: xCoord,
@@ -27,7 +26,11 @@ class MessageField extends Component {
 
   windowMsgToggle = () => {
     this.setState({ create: false })
-    console.log(this.state, 'state', 'boop')
+  }
+
+  grabPage = (n) => {
+    let newPage = n
+    this.props.sendBackPage(newPage)
   }
 
   render() {
@@ -39,8 +42,8 @@ class MessageField extends Component {
               <MessageWindow createMsg={this.windowMsgToggle} posX={this.state.posX} posY={this.state.posY} />
               : null
           }
-          <MsgSign />
         </div>
+        <MsgSign page={this.props.page} returnPage={this.grabPage}/>
       </div>
     )
   }
