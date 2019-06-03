@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './styles/styles.css';
 import MessageField from './localComponents/messageField'
 import Header from './localComponents/header'
+import Footer from './localComponents/footer'
+import ParallaxProvider from 'react-scroll-parallax'
 
 class App extends Component {
   constructor() {
@@ -11,14 +13,18 @@ class App extends Component {
     }
   }
   callBackPage = (p) => {
-    let newState = {activePage: p}
-    this.setState(newState)
+    this.setState({ activePage: p })
+    console.log(p, "app")
+    console.log(this.state.activePage, "activePage.app")
   }
   render() {
     return (
       <div className="App">
-        <Header sendBackPage={this.callBackPage}/>
-        <MessageField page={this.state.activePage}/>
+        <Header sendBackPage={this.callBackPage} />
+        <ParallaxProvider>
+          <MessageField page={this.state.activePage} />
+        </ParallaxProvider>
+        <Footer />
       </div>
     )
   }

@@ -9,6 +9,7 @@ class PageButtons extends Component {
   }
   grabPage = (p) => {
     this.props.sendBackPage(p)
+    console.log(p)
   }
   render() {
     return (

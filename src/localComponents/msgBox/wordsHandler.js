@@ -29,7 +29,7 @@ class WordsHandler extends Component {
       <React.Fragment>
         {this.props.wordText.map((word) => {
           return (
-            <li key={word} className="word" onClick={() => {
+            <li tabIndex="200" key={word} className="word" onClick={() => {
               this.props.sendBack({ word })
             }
             }>

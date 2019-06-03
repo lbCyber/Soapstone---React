@@ -9,6 +9,8 @@ $printFont: "Gentium Basic", serif;
 
 body {
   background-color: black;
+  min-width: 360px;
+  overflow: hidden;
 }
 
 h1,
@@ -34,11 +36,17 @@ form {
 /*  COMMON STYLES */
 
 .wrapper {
-  margin: 0 auto;
-  max-width: 1200px;
+  max-width: calc(100vw - 60px);
+  margin: 20px 30px 0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.fieldContainer {
   font-family: "Gentium Basic", serif;
   overflow: scroll;
-  max-height: calc(100vh - 150px);
+  max-height: calc(100vh - 170px);
+  min-width: 360px;
 }
 
 /*  HEADER STYLES */
@@ -71,7 +79,7 @@ header {
 }
 
 .pageButtons {
-  width: 80px;
+  width: 140px;
   height: 40px;
   text-align: center;
   margin: 0 20px;
@@ -79,6 +87,12 @@ header {
   flex-direction: column;
   justify-content: center;
   cursor: default;
+  &:hover {
+    background-color: white;
+    mix-blend-mode: exclusion;
+    color: black;
+    border-radius: 10px;
+  }
 }
 
 /*  PLAYING FIELD */
@@ -90,7 +104,7 @@ header {
 }
 
 .droppedSign {
-  position: absolute;
+  position: relative;
   height: 60px;
   width: 110px;
   z-index: 10;
@@ -99,9 +113,9 @@ header {
   align-items: center;
   text-align: center;
   border-radius: 100%;
-  animation: glow 5s alternate infinite 2s;
+  font-family: $handwriteFont;
+  animation: glow 5s alternate infinite 2s, redglow 2s normal 1;
   &::before {
-    animation: redglow 2s normal 1;
     background-image: url("../assets/glyphs-small.png");
     position: absolute;
     background-size: contain;
@@ -111,6 +125,7 @@ header {
     width: 110px;
     height: 60px;
     border-radius: 100%;
+    animation: hovering 15s normal infinite linear;
     content: "";
   }
   &::after {
@@ -140,13 +155,22 @@ header {
   width: 800px;
   height: 572px;
   margin: 0 auto;
-  background-color: grey;
+  background-color: rgba(155, 155, 155, 0.5);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  position: relative;
+  position: absolute;
+  left: calc(50% - 400px);
+  top: calc(50% - 286px);
   z-index: 100;
+  box-shadow: 0 0 15px 2px #000;
+  .msgHeader {
+    color: #fff;
+    text-shadow: 0 0 5px #000;
+    font-size: 2rem;
+    text-transform: uppercase;
+  }
 }
 
 .structureSelect {
@@ -177,29 +201,20 @@ header {
 .wordCategory {
   width: 100%;
   position: relative;
-  user-select: none;
   h2 {
+    user-select: none;
     border: 3px solid orange;
     box-shadow: 0 0 0 3px black;
     background-color: lightslategray;
-    height: 35px;
+    height: 50px;
     padding-top: 5px;
     width: calc(80% - 6px);
     margin: 3px 10%;
-    font-size: 1rem;
+    font-size: 1.8rem;
+    border-radius: 5px;
+    color: #ffe;
+    text-shadow: 0 0 3px #000;
   }
-}
-
-.wordCats {
-  position: relative;
-  background-color: darkgray;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: scroll;
   ul {
     text-align: center;
     line-height: 20px;
@@ -211,24 +226,26 @@ header {
     width: 80%;
     padding-left: 0;
     overflow: hidden;
-    display: flex;
     flex-direction: column;
     align-items: center;
     border-left: 2px dotted black;
     border-right: 2px dotted black;
-    & li:nth-child(odd)::before {
-      background-color: #bbb;
-    }
+    display: flex;
+  }
+  & li:nth-child(odd)::before {
+    background-color: #bbb;
   }
 }
 
 .word {
-  font-size: 1.2rem;
+  font-size: 1.7rem;
   height: 40px;
   max-width: 100%;
+  display: none;
   z-index: 1;
   padding-top: 5px;
   min-width: 250px;
+  display: none;
   &::before {
     overflow: hidden;
     position: absolute;
@@ -248,6 +265,22 @@ header {
       background-color: darkslategrey;
     }
   }
+}
+
+.wordCategory:focus-within .word {
+  display: unset;
+}
+
+.wordCats {
+  position: relative;
+  background-color: rgba(200, 200, 200, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .messageWindowButtons {
@@ -294,10 +327,18 @@ header {
 
 .previewText {
   position: absolute;
-  right: 100px;
-  text-align: right;
-  top: 50px;
-  font: $printFont;
+  font-size: 2rem;
+  margin: 0;
+  top: 45px;
+  color: #ffd;
+  text-shadow: 0 0 10px orange;
+  background-color: rgba(0, 0, 0, 0.3);
+  right: 10px;
+  border-radius: 20px;
+  text-align: center;
+  font-family: $handwriteFont;
+  min-width: 400px;
+  line-height: 45px;
 }
 
 // CHECKBOX
@@ -372,6 +413,11 @@ header {
 
 /*  FOOTER  */
 
+footer {
+  color: white;
+  text-align: center;
+}
+
 /*  ANIMATIONS  */
 
 @keyframes redglow {
@@ -400,6 +446,16 @@ header {
   }
 }
 
+@keyframes hovering {
+  // method found at http://lea.verou.me/2012/02/moving-an-element-along-a-circle/
+  0% {
+    transform: rotate(0deg) translate(-3px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translate(-3px) rotate(-360deg);
+  }
+}
+
 /*  OVERRIDES */
 
 .visuallyHidden {
@@ -414,3 +470,6 @@ header {
 .defOption {
   display: none;
 }
+
+@import "partials/768";
+@import "partials/1024";

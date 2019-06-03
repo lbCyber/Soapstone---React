@@ -1,8 +1,12 @@
 import React from 'react';
 
+const stopFocus = () => {
+  document.getElementById("structureSelect").blur()
+}
+
 const SentenceOptions = (props) => {
   return (
-    <option key={props.id} value={props.text}>{props.text}</option>
+    <option onClick={() => stopFocus()} key={props.id} value={props.text}>{props.text}</option>
   )
 }
 

@@ -24,7 +24,6 @@ class MessageWindow extends Component {
   }
 
   callBackWord = (chosenWord) => {
-    console.log(chosenWord)
     let chosenStructure = this.state.structure
     let newState = {
       word: chosenWord,
@@ -42,7 +41,6 @@ class MessageWindow extends Component {
     e.preventDefault();
     const dbRef = firebase.database().ref('pages/page1/messages');
     const complete = this.state.completeSentence
-    console.log(complete)
     const messageToPush = ({
       message: complete,
       posX: this.props.posX,
@@ -55,15 +53,15 @@ class MessageWindow extends Component {
   render() {
     return (
       <div className="msgWindow">
-        <h2>Select your message</h2>
+        <h2 className="msgHeader">Select your message</h2>
         <form action="">
           <SentenceDropdown sendBack={this.callBackStructure} />
-          <h3 className="previewText" tabindex="300">{this.state.completeSentence}</h3>
+          <h3 className="previewText" tabIndex="300">{this.state.completeSentence}</h3>
         </form>
         <WordCats sendBack={this.callBackWord} />
         <div className="messageWindowButtons">
-          <button className="submitButton buttonGo" onClick={this.messageSubmit} tabindex="301">Submit!</button>
-          <button className="submitButton buttonLeave" onClick={this.backOut} tabindex="302">Cancel!</button>
+          <button className="submitButton buttonGo" onClick={this.messageSubmit} tabIndex="301">Submit</button>
+          <button className="submitButton buttonLeave" onClick={this.backOut} tabIndex="302">Cancel</button>
         </div>
       </div>
     )

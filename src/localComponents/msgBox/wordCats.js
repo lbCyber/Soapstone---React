@@ -7,17 +7,10 @@ class WordCats extends Component {
     super(props);
     this.state = {
       categories: [],
-      wordList: [],
-      activeCat: "null"
+      activeCat: "null",
+      counter: 200
     }
   }
-  // handleClick = (id, obj) => {
-  //   const localState = {
-  //     wordList: obj,
-  //     activeCat: id
-  //     }
-  //   this.setState(localState)
-  // }
 
   callBack = (chosenWord) => {
     let currWord = chosenWord.word
@@ -30,15 +23,13 @@ class WordCats extends Component {
         {this.state.categories.map((cats) => {
           return (
             <div className="wordCategory" key={cats.id}>
-              {/* <h2 onClick={() => this.handleClick(cats.id, cats.text)}
-              >{cats.id}</h2> */}
-              <h2>{cats.id}</h2>
+              <h2 id={cats.id + "_header"} tabIndex="200">{cats.id}</h2>
               <ul className={cats.id} id={cats.id}>
-                <WordsHandler 
-                wordId={cats.id}
-                wordText={cats.text}
-                cats={this.state.activeCat}
-                sendBack={this.callBack}
+                <WordsHandler
+                  wordId={cats.id}
+                  wordText={cats.text}
+                  cats={this.state.activeCat}
+                  sendBack={this.callBack}
                 />
               </ul>
             </div>
@@ -62,7 +53,7 @@ class WordCats extends Component {
           text: data[key],
         });
       }
-      this.setState({categories: newState})
+      this.setState({ categories: newState })
     })
   }
 }

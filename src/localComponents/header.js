@@ -11,6 +11,7 @@ class Header extends Component {
 
   grabPage = (p) => {
     this.props.sendBackPage(p)
+    console.log(p,"header")
   }
 
   render() {

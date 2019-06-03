@@ -1,0 +1,21 @@
+@media screen and (max-width: 1024px) {
+  .msgWindow {
+    width: calc(100vw - 60px);
+    left: 30px;
+    height: calc(100vh - 170px);
+    top: 120px;
+    min-width: 360px;
+  }
+  .structureSelect {
+    width:100%;
+  }
+
+  .previewText {
+    position:unset;
+    min-width:360px;
+    margin-top:20px;
+  }
+  .wordCats {
+    margin-top:20px;
+  }
+}
