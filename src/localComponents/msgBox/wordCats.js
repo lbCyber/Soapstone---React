@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import firebase from '../../globalComponents/firebase';
 import WordsHandler from './wordsHandler'
 
+// HANDLES CATEGORIES OF WORDS TO SELECT IN MESSAGE BOX
+
 class WordCats extends Component {
   constructor(props) {
     super(props);
@@ -12,6 +14,7 @@ class WordCats extends Component {
     }
   }
 
+  // CALLBACK FUNCTION
   callBack = (chosenWord) => {
     let currWord = chosenWord.word
     this.props.sendBack(currWord)
@@ -40,13 +43,12 @@ class WordCats extends Component {
     )
   }
 
+  // GRABS AVAILABLE WORDS FROM DATABASE
   componentDidMount() {
-    const structure = firebase.database().ref("messageData/words");
-
-    structure.on('value', (response) => {
+    const wordsDb = firebase.database().ref("messageData/words");
+    wordsDb.on('value', (response) => {
       const newState = [];
       const data = response.val();
-
       for (let key in data) {
         newState.push({
           id: key,

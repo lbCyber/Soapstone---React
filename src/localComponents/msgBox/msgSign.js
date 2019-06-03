@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+//  HANDLES SIGN NODES (WHERE MESSAGES ARE PLACED)
+
 class MsgSign extends Component {
   constructor(props) {
     super(props);
@@ -10,7 +12,6 @@ class MsgSign extends Component {
   }
 
   render() {
-    // let signLength = this.state.signs.length
     let tabCounter = 500;
     return (
       <React.Fragment>

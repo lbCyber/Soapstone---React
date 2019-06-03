@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+// HANDLER FOR WORDS IN CATEGORIES IN MSG BOX
 
 class WordsHandler extends Component {
   constructor(props) {
@@ -7,20 +8,6 @@ class WordsHandler extends Component {
     this.state = {
       currWords: [],
       sendBack: this.sendBack
-    }
-  }
-  words = (props) => {
-    if (props.wordId === props.cats) {
-      const localState = {}
-      if (props.wordId === props.cats) {
-        localState.currWords = props.wordText;
-      } else {
-        localState.currWords = []
-      }
-      this.setState({currWords: localState.currWords})
-      return true
-    } else {
-      return false
     }
   }
 

@@ -1,5 +1,6 @@
 import React from 'react'
 
+//  NO IDEA WHAT THIS DOES
 const Footer = () => {
   return (
     <footer>

@@ -4,6 +4,8 @@ import MsgSign from './msgBox/msgSign'
 import firebase from '../globalComponents/firebase'
 import ImageCredit from './imageCredit'
 
+// COMPONENT FOR GENERAL PLAY AREA (WHERE MESSAGES ARE PLACED)
+
 class MessageField extends Component {
   constructor(props) {
     super(props);
@@ -16,6 +18,8 @@ class MessageField extends Component {
     }
   }
 
+
+  // START ON PAGE 1
   componentDidMount() {
     this.setState({ activePage: 1 })
     const dbRef = firebase.database().ref('pages/page1/messages')
@@ -34,6 +38,7 @@ class MessageField extends Component {
     })
   }
 
+  // IF PAGE CHANGES, SWITCH FIREBASE SCOPE
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.page !== this.props.page) {
       let newPage = this.props.page
@@ -55,7 +60,7 @@ class MessageField extends Component {
     }
   }
 
-
+// RECORDS CURSOR POSITION RELATIVE TO MESSAGE FIELD OBJECT
   messageCreate = (e) => {
     if (!(this.state.create)) {
       let boundary = e.target.getBoundingClientRect()
@@ -69,15 +74,17 @@ class MessageField extends Component {
     }
   }
 
+  //  TOGGLES OFF MESSAGE WINDOW
   windowMsgToggle = () => {
     this.setState({ create: false })
   }
-
+  // CALLBACK FUNCTION
   grabPage = (n) => {
     let newPage = n
     this.props.sendBackPage(newPage)
   }
 
+  // INJECTS STYLE CHANGE TO NEW BACKGROUND DEPENDING ON SELECTED PAGE
   backgroundPick = () => {
     if (this.props.page === 1) {
       return './assets/back1.jpg'

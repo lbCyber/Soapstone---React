@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import firebase from '../../globalComponents/firebase';
 import SentenceOptions from './sentenceOptions'
 
+//  HANDLES SENTENCE STRUCTURE DROPDOWN MENU
+
 class SentenceDropdown extends Component {
   constructor(props) {
     super(props);
@@ -11,6 +13,7 @@ class SentenceDropdown extends Component {
     }
   }
 
+  // HANDLES DATA INPUT WHEN OPTION IS SELECTED
   selectHandler = () => {
     const localState = Object.assign({}, this.state)
     const select = document.getElementById("structureSelect")

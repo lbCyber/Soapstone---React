@@ -41,6 +41,7 @@ form {
   border-radius: 10px;
   overflow: hidden;
   position:relative;
+  min-width: 360px;
 }
 
 .fieldContainer {
@@ -368,6 +369,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width:360px;
 }
 
 /*  ANIMATIONS  */

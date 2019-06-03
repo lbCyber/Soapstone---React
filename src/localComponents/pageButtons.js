@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+// WHEN BUTTONS ARE CLICKED, OUTPUTS DATA FOR REACT APP TO KNOW TO CHANGE PAGE
 class PageButtons extends Component {
   constructor(props) {
     super(props);
@@ -7,9 +7,10 @@ class PageButtons extends Component {
 
     }
   }
+
+  // CALLBACK FUNCTION
   grabPage = (p) => {
     this.props.sendBackPage(p)
-    console.log(p)
   }
   render() {
     return (

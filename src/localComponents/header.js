@@ -9,6 +9,7 @@ class Header extends Component {
     }
   }
 
+// CALLBACK FUNCTION
   grabPage = (p) => {
     this.props.sendBackPage(p)
     console.log(p,"header")

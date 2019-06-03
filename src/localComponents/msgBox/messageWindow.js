@@ -3,6 +3,7 @@ import SentenceDropdown from './sentenceDropdown';
 import WordCats from './wordCats';
 import firebase from "../../globalComponents/firebase"
 
+//  MESSAGE SELECT WINDOW FOR INPUTTING MESSAGE TO FIELD
 
 class MessageWindow extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class MessageWindow extends Component {
     }
   }
 
+  // CALLBACK FUNCTION FOR SENTENCE STRUCTURE
   callBackStructure = (chosenStructure) => {
     let word = '****'
     if (this.state.word !== "****") {
@@ -24,6 +26,7 @@ class MessageWindow extends Component {
     this.setState({ structure: newState.structure, word: newState.word })
   }
 
+  // CALLBACK FUNCTION FOR SELECTED WORD
   callBackWord = (chosenWord) => {
     let chosenStructure = this.state.structure
     let newState = {
@@ -33,10 +36,12 @@ class MessageWindow extends Component {
     this.setState({ word: newState.word, completeSentence: newState.completeSentence })
   }
 
+  // CHECK IF CANCEL BUTTON PRESSED, THEN CLOSE SUBMIT BOX
   backOut = () => {
     this.props.createMsg();
   }
 
+  // GRABS AVAILABLE OPTIONS TO DISPLAY FROM DATABASE
   messageSubmit = (e) => {
     e.preventDefault();
     let currentPage = this.props.page

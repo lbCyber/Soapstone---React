@@ -11,11 +11,13 @@ class App extends Component {
       activePage: 1
     }
   }
+  // CALLBACK FUNCTION
   callBackPage = (p) => {
     this.setState({ activePage: p })
     console.log(p, "app")
     console.log(this.state.activePage, "activePage.app")
   }
+  
   render() {
     return (
       <div className="App">

@@ -1,5 +1,6 @@
 import React from 'react'
 
+// INJECTS CC CREDIT FOR CURRENT BACKGROUND (WAS A HUGE PAIN TO REFACTOR CREATIVE COMMMONS' TEMPLATE)
 const ImageCredit = (props) => {
   if (props.page === 1) {
     return (
