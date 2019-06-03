@@ -40,6 +40,7 @@ form {
   margin: 20px 30px 0;
   border-radius: 10px;
   overflow: hidden;
+  position:relative;
 }
 
 .fieldContainer {
@@ -58,7 +59,6 @@ header {
   height: 100px;
   border-radius: 0 0 10px 10px;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   background-blend-mode: hard-light;
@@ -70,12 +70,18 @@ header {
     height: 100%;
     display: flex;
     align-items: center;
-    width: 420px;
+    width: 33%;
     justify-content: center;
     font-size: 3.6rem;
     padding-left: 90px;
     margin-left: 20px;
+    flex-grow:1;
   }
+}
+
+.headerList {
+  padding-left:60px;
+  flex-grow:2;
 }
 
 .pageButtons {
@@ -93,6 +99,15 @@ header {
     color: black;
     border-radius: 10px;
   }
+}
+
+.buttons {
+  margin-right: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 100%;
+  flex-grow:2;
 }
 
 /*  PLAYING FIELD */
@@ -156,7 +171,7 @@ header {
 
 .msgWindow {
   width: 800px;
-  height: 572px;
+  height: 80%;
   margin: 0 auto;
   background-color: rgba(155, 155, 155, 0.5);
   border-radius: 10px;
@@ -165,7 +180,7 @@ header {
   overflow: hidden;
   position: absolute;
   left: calc(50% - 400px);
-  top: calc(50% - 286px);
+  top: calc(25px);
   z-index: 100;
   box-shadow: 0 0 15px 2px #000;
   .msgHeader {
@@ -320,14 +335,6 @@ header {
   width: calc(40% - 5px);
 }
 
-.buttons {
-  margin-right: 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  height: 100%;
-}
-
 .previewText {
   position: absolute;
   font-size: 2rem;
@@ -344,75 +351,12 @@ header {
   line-height: 45px;
 }
 
-// CHECKBOX
+.imageCredit {
+  background: #111;
+  display:flex;
+  width:10000px;
+}
 
-// .sentenceCheckbox label {
-//   position: relative;
-//   line-height: 45px;
-//   margin: 4px 0px 0px 15px;
-//   user-select: none;
-// }
-
-// .sentenceNum {
-//   position: absolute;
-//   width: 0;
-//   height: 0;
-//   top: -9999px;
-//   opacity: 0;
-// }
-
-// .sentenceCheckbox {
-//   position: relative;
-//   display: flex;
-//   justify-content: center;
-//   width: 200px;
-//   margin: 0 auto;
-// }
-
-// .checkBox1 {
-//   right: calc(100px / 3);
-//   &::before {
-//     content: "";
-//     background-color: darkgray;
-//     border-radius: 50px;
-//     position: absolute;
-//     width: 85px;
-//     height: 40px;
-//     right: -75px;
-//     top: 0;
-//     display: block;
-//     transition: background-color 0.2s, right 0.2s;
-//   }
-//   &::after {
-//     content: "";
-//     border-radius: 50px;
-//     background-color: #fff;
-//     display: block;
-//     top: -40px;
-//     right: -25px;
-//     width: 30px;
-//     height: 30px;
-//     position: relative;
-//     transition: right 0.25s;
-//     overflow: visible;
-//   }
-// }
-
-// .checkBox2 {
-//   right: -35px;
-// }
-
-// .sentenceNum:checked + .checkBox1::before {
-//   background-color: slateblue;
-// }
-
-// .sentenceNum:active + .checkBox1::before {
-//   background-color: cornflowerblue;
-// }
-
-// .sentenceNum:checked + .checkBox1::after {
-//   right: -70px;
-// }
 
 /*  FOOTER  */
 
@@ -479,5 +423,5 @@ footer {
   display: none;
 }
 
-@import "partials/768";
 @import "partials/1024";
+@import "partials/768";

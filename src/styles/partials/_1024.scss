@@ -1,4 +1,28 @@
 @media screen and (max-width: 1024px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap:wrap;
+    h1 {
+      height: 60px;
+      width: 100%;
+      background-position: calc(50% - 110px);
+      margin: 0;
+    }
+  }
+
+  .headerList {
+    margin:0;
+    align-self:flex-start;
+  }
+
+  .buttons {
+    height: 40px;
+    margin: 0;
+    align-self:flex-start;
+  }
+
   .msgWindow {
     width: calc(100vw - 60px);
     left: 30px;
@@ -7,15 +31,15 @@
     min-width: 360px;
   }
   .structureSelect {
-    width:100%;
+    width: 100%;
   }
 
   .previewText {
-    position:unset;
-    min-width:360px;
-    margin-top:20px;
+    position: unset;
+    min-width: 360px;
+    margin-top: 20px;
   }
   .wordCats {
-    margin-top:20px;
+    margin-top: 20px;
   }
 }

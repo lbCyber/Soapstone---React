@@ -18,6 +18,10 @@ class Header extends Component {
     return (
       <header>
         <h1>Soapstone</h1>
+        <ul className="headerList">
+          <li className="headerListEntry">Click anywhere to leave a message</li>
+          <li className="headerListEntry">Scroll anywhere to find one</li>
+        </ul>
         <PageButtons sendBackPage={this.grabPage}/>
       </header>
     )
