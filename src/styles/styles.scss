@@ -40,7 +40,7 @@ form {
   margin: 20px 30px 0;
   border-radius: 10px;
   overflow: hidden;
-  position:relative;
+  position: relative;
   min-width: 360px;
 }
 
@@ -76,13 +76,13 @@ header {
     font-size: 3.6rem;
     padding-left: 90px;
     margin-left: 20px;
-    flex-grow:1;
+    flex-grow: 1;
   }
 }
 
 .headerList {
-  padding-left:60px;
-  flex-grow:2;
+  padding-left: 60px;
+  flex-grow: 2;
 }
 
 .pageButtons {
@@ -108,7 +108,7 @@ header {
   justify-content: space-between;
   align-items: flex-end;
   height: 100%;
-  flex-grow:2;
+  flex-grow: 2;
 }
 
 /*  PLAYING FIELD */
@@ -158,7 +158,8 @@ header {
     text-shadow: 0 0 10px orange;
     font: $handwriteFont;
   }
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     &::before {
       opacity: 0;
     }
@@ -354,10 +355,9 @@ header {
 
 .imageCredit {
   background: #111;
-  display:flex;
-  width:10000px;
+  display: flex;
+  width: 10000px;
 }
-
 
 /*  FOOTER  */
 
@@ -369,7 +369,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width:360px;
+  min-width: 360px;
 }
 
 /*  ANIMATIONS  */
