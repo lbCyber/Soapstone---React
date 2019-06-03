@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import MessageWindow from './msgBox/messageWindow'
 import MsgSign from './msgBox/msgSign'
-import firebase from '../globalComponents/firebase';
-import Parallax from 'react-scroll-parallax'
+import firebase from '../globalComponents/firebase'
+import ImageCredit from './imageCredit'
 
 class MessageField extends Component {
   constructor(props) {
@@ -38,7 +38,7 @@ class MessageField extends Component {
     if (prevProps.page !== this.props.page) {
       let newPage = this.props.page
       this.setState({ activePage: newPage })
-      const dbRef = firebase.database().ref('pages/page'+newPage+'/messages')
+      const dbRef = firebase.database().ref('pages/page' + newPage + '/messages')
       dbRef.on('value', (response) => {
         const newState = []
         const data = response.val()
@@ -78,18 +78,27 @@ class MessageField extends Component {
     this.props.sendBackPage(newPage)
   }
 
+  backgroundPick = () => {
+    if (this.props.page === 1) {
+      return './assets/back1.jpg'
+    } else {
+      return './assets/back2.jpg'
+    }
+  }
+
   render() {
     return (
       <div className="wrapper">
         <div className="fieldContainer">
-          <div className="messageField" onClick={this.messageCreate}>
+          <div className="messageField" onClick={this.messageCreate} style={{ backgroundImage: "url("+this.backgroundPick()+")" }}>
             {
               this.state.create ?
-                <MessageWindow createMsg={this.windowMsgToggle} posX={this.state.posX} posY={this.state.posY} />
+                <MessageWindow createMsg={this.windowMsgToggle} posX={this.state.posX} posY={this.state.posY} page={this.props.page}/>
                 : null
             }
             <MsgSign page={this.props.page} returnPage={this.grabPage} signs={this.state.signs} />
           </div>
+          <ImageCredit page={this.props.page}/>
         </div>
       </div>
     )

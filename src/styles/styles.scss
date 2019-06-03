@@ -8,7 +8,7 @@ $printFont: "Gentium Basic", serif;
 /*  BASE STYLES */
 
 body {
-  background-color: black;
+  background-color: #555;
   min-width: 360px;
   overflow: hidden;
 }
@@ -101,6 +101,8 @@ header {
   width: 10000px;
   height: 10000px;
   background-color: grey;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .droppedSign {
@@ -133,13 +135,14 @@ header {
     position: absolute;
     opacity: 0;
     color: white;
-    background-color: #777;
+    background-color: rgba(50, 50, 50, 0.8);
     border-radius: 15px;
     padding: 20px;
     transition: opacity 0.5s;
+    text-shadow: 0 0 10px orange;
     font: $handwriteFont;
   }
-  &:hover {
+  &:hover, &:focus {
     &::before {
       opacity: 0;
     }
@@ -416,6 +419,11 @@ header {
 footer {
   color: white;
   text-align: center;
+  background-color: #000;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*  ANIMATIONS  */

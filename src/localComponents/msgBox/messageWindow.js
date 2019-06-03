@@ -10,7 +10,8 @@ class MessageWindow extends Component {
     this.state = {
       word: '****',
       structure: '',
-      completeSentence: ''
+      completeSentence: '',
+      currentPage: props.page
     }
   }
 
@@ -36,10 +37,10 @@ class MessageWindow extends Component {
     this.props.createMsg();
   }
 
-
   messageSubmit = (e) => {
     e.preventDefault();
-    const dbRef = firebase.database().ref('pages/page1/messages');
+    let currentPage = this.props.page
+    const dbRef = firebase.database().ref('pages/page'+currentPage+'/messages');
     const complete = this.state.completeSentence
     const messageToPush = ({
       message: complete,
